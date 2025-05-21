@@ -10,23 +10,23 @@ class LionTest {
     @Test
     void testGetKittens() throws Exception {
         Feline feline = new Feline();
-        Lion lion = new Lion("Самец", Mockito.mock(Predator.class), feline);
+        Lion lion = new Lion("Самец", feline);
         assertEquals(1, lion.getKittens());
     }
 
     @Test
     void testInvalidSex() {
         Exception exception = assertThrows(Exception.class, () ->
-                new Lion("Неизвестно", Mockito.mock(Predator.class), Mockito.mock(Feline.class))
+                new Lion("Неизвестно", Mockito.mock(Feline.class))
         );
         assertEquals("Используйте допустимые значения пола животного - самец или самка", exception.getMessage());
     }
 
     @Test
     void testGetFood() throws Exception {
-        Predator predatorMock = Mockito.mock(Predator.class);
-        Mockito.when(predatorMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Lion lion = new Lion("Самец", predatorMock, new Feline());
+        Feline felineMock = Mockito.mock(Feline.class);
+        Mockito.when(felineMock.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Lion lion = new Lion("Самец", felineMock);
         assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
     }
 }

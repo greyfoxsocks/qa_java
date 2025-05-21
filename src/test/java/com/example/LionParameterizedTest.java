@@ -10,7 +10,7 @@ class LionParameterizedTest {
     @ParameterizedTest
     @ValueSource(strings = {"Самец", "Самка"})
     void testDoesHaveMane(String sex) throws Exception {
-        Lion lion = new Lion(sex, Mockito.mock(Predator.class), Mockito.mock(Feline.class));
+        Lion lion = new Lion(sex, Mockito.mock(Feline.class));
         assertEquals("Самец".equals(sex), lion.doesHaveMane());
     }
 }
