@@ -1,4 +1,3 @@
-
 package com.example;
 
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,9 +9,8 @@ class LionParameterizedTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"Самец", "Самка"})
-    void testLionSex(String sex) throws Exception {
-        Predator predatorMock = Mockito.mock(Predator.class);
-        Lion lion = new Lion(sex, predatorMock);
-        assertEquals(sex.equals("Самец"), lion.doesHaveMane());
+    void testDoesHaveMane(String sex) throws Exception {
+        Lion lion = new Lion(sex, Mockito.mock(Predator.class), Mockito.mock(Feline.class));
+        assertEquals("Самец".equals(sex), lion.doesHaveMane());
     }
 }
